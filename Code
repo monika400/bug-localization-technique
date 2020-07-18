@@ -1,0 +1,198 @@
+
+#include <bits/stdc++.h>
+#include <cstdlib>
+using namespace std;
+int main()
+{
+    long double t;
+    cin>>t;
+    while(t--){
+        long double n;
+        cin>>n;
+        //
+        if(n<2){cout<<"-1"<<endl;continue;}
+        vector<pair<long double,long double>> vec;
+        for(long double i=0;i<n;i++){
+            long double a,b;
+            cin>>a>>b;
+            vec.push_back(make_pair(a,b));
+        }
+        sort(vec.begin(),vec.end());
+        //number of sets
+        vector<pair<long double,long double>> num;
+        num.push_back(make_pair(vec[0].first,vec[0].second));
+        long double mx=vec[0].second;
+        for(long double i=1;i<n;i++){
+            mx=max(mx,vec[i].second);
+            if(vec[i].first<=num.back().second&&vec[i].second>=num.back().second)num.back().second=vec[i].second;
+            else
+if(vec[i].first<=num.back().second&&vec[i].second<=num.back().second)continue;
+            else
+if(vec[i].first>num.back().second){num.push_back(make_pair(vec[i].first,vec[i].second));}
+        }
+        if(num.size()==2)cout<<"0"<<endl;
+        else if(num.size()==1){
+            if(n<=2){cout<<"-1"<<endl;continue;}
+        vector<pair<long double,char>> ElementsOfRange;
+        vector<pair<long double,long double>> ElementsOfRangeNext;
+        //long double single[n]={0};
+        //long double singleValue[n]={0};
+            //long double arr[mx+1]={0};
+            for(int i=0;i<n;i++){
+                ElementsOfRange.push_back(make_pair(vec[i].first,'+'));
+                ElementsOfRange.push_back(make_pair(vec[i].second,'-'));
+                ElementsOfRangeNext.push_back(make_pair(vec[i].first,i));
+                ElementsOfRangeNext.push_back(make_pair(vec[i].second,i));
+                //if(vec[i].first==vec[i].second){single[i]++;singleValue[i]=vec[i].first;}
+            }
+            sort(ElementsOfRange.begin(),ElementsOfRange.end());
+            sort(ElementsOfRangeNext.begin(),ElementsOfRangeNext.end());
+            long double removing[n]={0};
+            char prv='l';
+            int add=0;
+            char prs='y';
+            int mn=n;
+            long double point=0;
+            vector<long double> others;
+            int mins=0;
+            int pls=0;
+            int opn[n]={0};
+            vector<long double> open;
+            long long point=0;
+            //First
+            vector<int > previousByPart;
+            vector<long long,long long> rangesPrevious;
+            //
+            //Second
+            vector<int > presentByPart;
+            vector<long long,long long> rangesPresent;
+            //list
+            vector<vector<int> > OpenSets(n);
+            vector<pair<int,int>> plsMins;
+            for(int i=0;i<((2*n)-1);i++){
+                plsMins.push_back(make_pair(pls,mins));
+                if(ElementsOfRange[i].second=='+'){
+                    OpenSets[ElementsOfRangeNext[i].second] =
+vector<int>(open.size());
+                    for(int j=0;j<open.size();j++){
+                        OpenSets[ElementsOfRangeNext[i].second][j]=open[j];
+                    }
+                    open.push_back(ElementsOfRangeNext[i].second);
+                    pls++;
+                }
+                if(ElementsOfRange[i].second=='-'){
+                    for(int j=0;j<open.size();j++){
+                        if(open[i]==ElementsOfRangeNext[i].second)open.erase(open.begin()+j);
+                    }
+                    mins++;
+                }
+            }
+
+
+            //vector<pair< long long,long long> > point;
+            for(int i=0;i<((2*n)-1);){
+                int value=ElementsOfRange[i].first;
+                char sign=ElementsOfRange[i].second;
+                int both=0;
+                int ini=i;
+                while(ElementsOfRange[i].first==value&&i<((2*n)-1)){
+                    if(ElementsOfRange[i].second!=sign)both=1;
+                    i++;
+                }
+                prs=sign;
+                //cout<<prv<<" "<<prs<<" "<<add<<endl;
+                if(prv=='-'&&prs=='+'||prv=='-'&&both==1){
+                        //cout<<"working"<<endl;
+                        long double newMin=min(add,mn);
+                        if(newMin!=mn){
+                                mn=newMin;
+                                point=ElementsOfRange[i];
+                                }
+                                removing[add]++;
+                                if(both==1)prv='-';
+                                else prs='+';
+                }else{
+                prv=sign;
+                if(both==1)prv='-';
+                }
+                i=ini;
+                while(ElementsOfRange[i].first==value&&i<((2*n)-1)){
+                    if(ElementsOfRange[i].second=='-')add--;
+                    if(ElementsOfRange[i].second=='+')add++;
+                    //if(ElementsOfRange[i].second!=sign)both=1;
+                    if(ElementsOfRange[i].second=='+')
+                    open.push_back(ElementsOfRangeNext[i].second);
+                    }
+                    if(ElementsOfRange[i].second=='-'){
+                        for(int i=0;i<open.size();i++){
+                            if(open[i]
+                            //myVector.erase(myVector.begin() + integer)
+                        }
+                    }
+                    i++;
+                }
+            }
+            //cout<<"result"<<mn<<" "<<removing[mn]<<endl;
+            if(removing[mn]==1)cout<<mn<<endl;
+            else {
+                int i=mn;
+                for(;i<n;i++){
+                    if(removing[i]==1){
+                        cout<<i<<endl;
+                        break;
+                    }}
+                if(i==n){
+                        //long double removing=mn;
+                        vector<pair<long double,long double>> vec3;
+                        for(int i=0;i<n;i++){
+                            if(point>=vec[i].second||point<=vec[i].first)vec3.push_back(make_pair(vec[i].first,vec[i].second));
+                        }
+                        vector<pair<long double,long double>> num2;
+                        num2.push_back(make_pair(vec3[0].first,vec3[0].second));
+                        long double mx2=vec3[0].second;
+                        for(long double i=1;i<vec3.size();i++){
+                            mx2=max(mx,vec3[i].second);
+                            if(vec3[i].first<=num2.back().second&&vec3[i].second>=num2.back().second)num2.back().second=vec3[i].second;
+                            else
+if(vec3[i].first<=num2.back().second&&vec3[i].second<=num2.back().second)continue;
+                            else
+if(vec3[i].first>num2.back().second){num2.push_back(make_pair(vec3[i].first,vec3[i].second));}
+                        }
+                        //cout<<num2.size()<<" "<<vec3.size()<<endl;
+                        if(num2.size()==1)cout<<"-1"<<endl;
+                        else {
+                            long double groupValue2[num2.size()]={0};
+                            for(long double i=0;i<vec3.size();i++){
+                                for(long double j=0;j<num2.size();j++){
+                                    if(num2[j].first<=vec3[i].first&&num2[j].second>=vec3[i].second)groupValue2[j]++;
+                                }
+                            }
+                            sort(groupValue2,groupValue2+num2.size());
+                            long double output2=0;
+                            for(long double i=0;i<num2.size()-2;i++){
+                                output2=groupValue2[i]+output2;
+                            }
+                            cout<<output2+mn<<endl;
+                                    }
+                    vec3.clear();
+                    num2.clear();
+                }
+            }
+        }else if(num.size()>2){
+                //count the number of elements in each group and delete n-2 groups
+with minimum value
+                long double groupValue[num.size()]={0};
+                for(long double i=0;i<n;i++){
+                    for(long double j=0;j<num.size();j++){
+                        if(num[j].first<=vec[i].first&&num[j].second>=vec[i].second)groupValue[j]++;}}
+                sort(groupValue,groupValue+num.size());
+                long double output=0;
+                for(long double i=0;i<num.size()-2;i++){output=groupValue[i]+output;}
+                cout<<output<<endl;
+        }
+
+        vec.clear();
+        num.clear();
+    }
+    return 0;
+}
